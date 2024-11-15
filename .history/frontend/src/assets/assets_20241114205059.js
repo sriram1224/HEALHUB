@@ -312,11 +312,10 @@ export const doctors = [
   },
 ];
 
-export const appointments = [
+export const appintments = [
   {
     appointmentId: "appt1",
     doctorId: "doc1",
-    image: doc1,
     patientName: "John Doe",
     patientEmail: "johndoe@example.com",
     patientPhone: "1234567890",
@@ -328,7 +327,6 @@ export const appointments = [
   {
     appointmentId: "appt2",
     doctorId: "doc2",
-    image: doc2,
     patientName: "Jane Smith",
     patientEmail: "janesmith@example.com",
     patientPhone: "0987654321",
@@ -340,7 +338,6 @@ export const appointments = [
   {
     appointmentId: "appt3",
     doctorId: "doc3",
-    image: doc3,
     patientName: "Alice Johnson",
     patientEmail: "alicejohnson@example.com",
     patientPhone: "1122334455",
@@ -348,5 +345,16 @@ export const appointments = [
     appointmentTime: "11:00 AM",
     status: "Cancelled",
     notes: "Patient cancelled due to personal reasons.",
+  },
+  {
+    appointmentId: "appt4",
+    doctorId: "doc4",
+    patientName: "Bob Brown",
+    patientEmail: "bobbrown@example.com",
+    patientPhone: "6677889900",
+    appointmentDate: "2023-10-18",
+    appointmentTime: "03:30 PM",
+    status: "Confirmed",
+    notes: "Follow-up appointment.",
   },
 ];

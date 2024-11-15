@@ -23,7 +23,7 @@ const MyProfile = () => {
 
   return (
     <div className="p-6   min-h-screen text-white">
-      <div className="max-w-4xl border p-4 rounded-lg mx-auto">
+      <div className="max-w-4xl border mx-auto">
         <div className="flex flex-col items-center md:items-start justify-between mb-6 md:flex-row">
           <h1 className="text-4xl font-bold mb-4 md:mb-0 text-center md:text-left">
             My Profile

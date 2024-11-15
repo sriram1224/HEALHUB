@@ -23,8 +23,8 @@ const RelatedDoctors = ({ speciality, docId }) => {
           <h2 className="text-2xl font-bold mb-4">Related Doctors</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {reldocs.map((doc) => (
-              <Link to={`/appointment/${doc._id}`} key={doc._id}>
-                <div className="bg-gray-800 hover:bg-black hover:border p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+              <Link to={`/appoimtment/${doc._id}`} key={doc._id}>
+                <div className="bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                   <img
                     src={doc.image}
                     alt={doc.name}

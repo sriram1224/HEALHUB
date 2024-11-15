@@ -28,21 +28,6 @@ const MyProfile = () => {
           <h1 className="text-4xl font-bold mb-4 md:mb-0 text-center md:text-left">
             My Profile
           </h1>
-          {isEdit ? (
-            <button
-              className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition duration-300 shadow-md"
-              onClick={handleSave}
-            >
-              Save
-            </button>
-          ) : (
-            <button
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 shadow-md"
-              onClick={() => setIsEdit(true)}
-            >
-              Edit
-            </button>
-          )}
         </div>
 
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8  rounded-lg p-6 shadow-lg">
@@ -156,6 +141,21 @@ const MyProfile = () => {
             </div>
           </div>
         </div>
+        {isEdit ? (
+          <button
+            className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition duration-300 shadow-md"
+            onClick={handleSave}
+          >
+            Save
+          </button>
+        ) : (
+          <button
+            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 shadow-md"
+            onClick={() => setIsEdit(true)}
+          >
+            Edit
+          </button>
+        )}
       </div>
     </div>
   );

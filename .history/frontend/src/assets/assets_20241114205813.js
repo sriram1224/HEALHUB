@@ -349,4 +349,16 @@ export const appointments = [
     status: "Cancelled",
     notes: "Patient cancelled due to personal reasons.",
   },
+  {
+    appointmentId: "appt4",
+    doctorId: "doc4",
+    image: doc4,
+    patientName: "Bob Brown",
+    patientEmail: "bobbrown@example.com",
+    patientPhone: "6677889900",
+    appointmentDate: "2023-10-18",
+    appointmentTime: "03:30 PM",
+    status: "Confirmed",
+    notes: "Follow-up appointment.",
+  },
 ];

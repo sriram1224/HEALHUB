@@ -116,7 +116,7 @@ const Doctors = () => {
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-32 h-32 rounded-full mr-4 shadow-md border-2 bg-blue-700 object-cover"
+                className="w-32 h-32 rounded-full mr-4 shadow-md border-2 bg-blue-500 object-cover"
               />
               <div className="text-center">
                 <p className="text-xl font-semibold text-white">{item.name}</p>

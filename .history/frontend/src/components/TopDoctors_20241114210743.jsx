@@ -22,12 +22,12 @@ const TopDoctors = () => {
           <div
             onClick={() => navigate(`/appointment/${item._id}`)}
             key={index}
-            className="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg border-blue-400 hover:bg-black hover:border transition-transform duration-300 transform hover:-translate-y-2"
+            className="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg hover:bg-black hover:border transition-transform duration-300 transform hover:-translate-y-2"
           >
             <img
               src={item.image}
               alt={item.name}
-              className="w-32 h-32 rounded-full mr-4 shadow-md border-2 bg-blue-600 border-gray-700 mb-4 mx-auto object-cover"
+              className="w-32 h-32 rounded-full mb-4 mx-auto object-cover"
             />
             <div className="text-center">
               <p className="text-xl font-semibold text-white">{item.name}</p>
