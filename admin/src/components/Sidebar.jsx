@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <aside
       className={`  h-screen  p-4 w-20 md:w-60 
-      ${theme === "dark" ? "bg-gray-800 text-blue-500" : ""}
+      ${theme === "dark" ? " text-blue-500" : ""}
         transition-all duration-300 ease-in-out flex flex-col`}
     >
       {atoken && (
