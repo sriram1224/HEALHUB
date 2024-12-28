@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { DoctorContext } from "../../context/DoctorContext";
 import { AppContext } from "../../context/AppContext";
 import { ThemeContext } from "../../context/ThemeContext";
+import { useState } from "react";
 
 const DoctorAppointment = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const [theme, setTheme] = useState('light');
   const {
     dToken,
     getAllAppointments,
@@ -31,27 +32,22 @@ const DoctorAppointment = () => {
 
   return (
     <div
-      className={`p-6 min-h-screen ${
-        theme === "dark" ? "bg-gray-900" : ""
-      } text-${theme === "dark" ? "white" : "black"}`}
+      className={`p-6 min-h-screen `}
     >
       <h2
-        className={`text-3xl font-extrabold mb-6 text-center ${
-          theme === "dark" ? "text-white" : "text-black"
-        }`}
+        className={`text-3xl font-extrabold mb-6 text-center "text-black"
+          `}
       >
         Doctor Appointments
       </h2>
       <div className="overflow-x-auto border border-blue-500 rounded-lg shadow-2xl">
         <table
-          className={`w-full table-auto ${
-            theme === "dark" ? "bg-gray-800 text-sm" : " text-sm"
-          } rounded-lg`}
+          className={`w-full table-auto ${theme === "dark" ? "bg-gray-800 text-sm" : " text-sm"
+            } rounded-lg`}
         >
           <thead
-            className={`text-${
-              theme === "dark" ? "gray-300" : "gray-700"
-            } uppercase text-left`}
+            className={`text-${theme === "dark" ? "gray-300" : "gray-700"
+              } uppercase text-left`}
           >
             <tr>
               <th className="px-4 py-3 text-center">#</th>
@@ -83,9 +79,8 @@ const DoctorAppointment = () => {
                       <span className="font-medium">{userData.name}</span>
                     </td>
                     <td
-                      className={`px-4 py-3 text-center font-medium ${
-                        payment ? "text-green-500" : "text-yellow-500"
-                      }`}
+                      className={`px-4 py-3 text-center font-medium ${payment ? "text-green-500" : "text-yellow-500"
+                        }`}
                     >
                       {payment ? "Paid" : "Pending"}
                     </td>

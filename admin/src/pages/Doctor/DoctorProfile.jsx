@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { ThemeContext } from "../../context/ThemeContext";
 
 const DoctorProfile = () => {
-  const { theme } = useContext(ThemeContext);
+  const [theme, setTheme] = useState('light');
   const { dToken, profileData, setProfileData, getProfileData, backendurl } =
     useContext(DoctorContext);
   const { currency } = useContext(AppContext);
@@ -48,16 +48,14 @@ const DoctorProfile = () => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center p-10 ${
-        theme === "dark" ? "bg-gray-900 text-white" : " text-gray-800"
-      }`}
+      className={`min-h-screen flex flex-col items-center p-10 ${theme === "dark" ? "bg-gray-900 text-white" : " text-gray-800"
+        }`}
     >
       <div
-        className={`w-full p-8 shadow-xl rounded-xl border-4 ${
-          theme === "dark"
-            ? "border-yellow-400 bg-gray-800"
-            : "border-yellow-600 "
-        }`}
+        className={`w-full p-8 shadow-xl rounded-xl border-4 ${theme === "dark"
+          ? "border-yellow-400 bg-gray-800"
+          : "border-yellow-600 "
+          }`}
       >
         <div className="flex flex-col md:flex-row items-center justify-between">
           {/* Left side: Profile Image */}

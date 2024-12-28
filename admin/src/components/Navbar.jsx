@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
 import { ThemeContext } from "../context/ThemeContext";
@@ -8,7 +8,7 @@ import { DoctorContext } from "../context/DoctorContext";
 
 const Navbar = () => {
   const { atoken, setAtoken } = useContext(AdminContext);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const [theme, setTheme] = useState('light');
   const { dToken, setDToken } = useContext(DoctorContext);
 
   const navigate = useNavigate();
@@ -24,9 +24,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`p-4 shadow-md  text-white transition-all duration-300 ease-in-out sticky top-0 ${
-        theme === "dark" ? "bg-gray-800 text-blue-500" : "bg-[#EDE8F5]"
-      } `}
+      className="p-4 shadow-md  text-white transition-all duration-300 ease-in-out sticky top-0 bg-[#F8F8FF]"
     >
       <div className="flex items-center justify-between px-6">
         {/* Logo and User Role */}

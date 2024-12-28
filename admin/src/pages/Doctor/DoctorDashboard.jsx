@@ -2,9 +2,10 @@ import { useContext, useEffect } from "react";
 import { DoctorContext } from "../../context/DoctorContext";
 import { assets } from "../../assets/assets";
 import { ThemeContext } from "../../context/ThemeContext";
+import { useState } from "react";
 
 const DoctorDashboard = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const [theme, setTheme] = useState('light');
   const {
     dashData,
     getDashData,
@@ -20,12 +21,12 @@ const DoctorDashboard = () => {
     return isNaN(parsedDate)
       ? "Invalid Date"
       : parsedDate.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
   };
 
   useEffect(() => {
@@ -41,19 +42,16 @@ const DoctorDashboard = () => {
   return (
     dashData && (
       <div
-        className={`p-4 min-h-screen bg-${
-          theme === "dark" ? "gray-900" : ""
-        } text-${theme === "dark" ? "white" : "black"}`}
+        className={`p-4 min-h-screen bg-${theme === "dark" ? "gray-900" : ""
+          } text-${theme === "dark" ? "white" : "black"}`}
       >
         {/* Dashboard Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           {/* Doctors */}
           <div
-            className={`flex flex-col items-center p-4 bg-${
-              theme === "dark" ? "gray-800" : ""
-            } text-${
-              theme === "dark" ? "white" : "black"
-            } border-2 border-blue-300 rounded-lg shadow hover:shadow-lg transition duration-300`}
+            className={`flex flex-col items-center p-4 bg-${theme === "dark" ? "gray-800" : ""
+              } text-${theme === "dark" ? "white" : "black"
+              } border-2 border-blue-300 rounded-lg shadow hover:shadow-lg transition duration-300`}
           >
             <img
               src={assets.earning_icon}
@@ -68,11 +66,9 @@ const DoctorDashboard = () => {
 
           {/* Appointments */}
           <div
-            className={`flex flex-col items-center p-4 bg-${
-              theme === "dark" ? "gray-800" : ""
-            } text-${
-              theme === "dark" ? "white" : "black"
-            } border-2 border-blue-300 rounded-lg shadow hover:shadow-lg transition duration-300`}
+            className={`flex flex-col items-center p-4 bg-${theme === "dark" ? "gray-800" : ""
+              } text-${theme === "dark" ? "white" : "black"
+              } border-2 border-blue-300 rounded-lg shadow hover:shadow-lg transition duration-300`}
           >
             <img
               src={assets.appointments_icon}
@@ -87,11 +83,9 @@ const DoctorDashboard = () => {
 
           {/* Patients */}
           <div
-            className={`flex flex-col items-center p-4 bg-${
-              theme === "dark" ? "gray-800" : ""
-            } text-${
-              theme === "dark" ? "white" : "black"
-            } border-2 border-blue-300 rounded-lg shadow hover:shadow-lg transition duration-300`}
+            className={`flex flex-col items-center p-4 bg-${theme === "dark" ? "gray-800" : ""
+              } text-${theme === "dark" ? "white" : "black"
+              } border-2 border-blue-300 rounded-lg shadow hover:shadow-lg transition duration-300`}
           >
             <img
               src={assets.patients_icon}
@@ -107,9 +101,8 @@ const DoctorDashboard = () => {
 
         {/* Latest Appointments */}
         <div
-          className={`bg-${theme === "dark" ? "gray-800" : ""} text-${
-            theme === "dark" ? "white" : "black"
-          } p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-2 border-blue-300`}
+          className={`bg-${theme === "dark" ? "gray-800" : ""} text-${theme === "dark" ? "white" : "black"
+            } p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-2 border-blue-300`}
         >
           <div className="flex items-center mb-4">
             <span className="material-icons text-blue-500 text-4xl leading-none">
@@ -126,9 +119,8 @@ const DoctorDashboard = () => {
             ).map((item, index) => (
               <div
                 key={index}
-                className={`flex justify-between items-center p-4 border-b ${
-                  theme === "dark" ? "border-gray-700" : "border-gray-300"
-                } rounded-md hover:shawdow-lg hover:bg-[#b6c2f5] transition duration-200`}
+                className={`flex justify-between items-center p-4 border-b ${theme === "dark" ? "border-gray-700" : "border-gray-300"
+                  } rounded-md hover:shawdow-lg hover:bg-[#b6c2f5] transition duration-200`}
               >
                 {/* Doctor Info */}
                 <div className="flex items-center space-x-4">
