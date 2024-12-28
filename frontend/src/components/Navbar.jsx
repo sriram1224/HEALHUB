@@ -29,7 +29,7 @@ const Navbar = () => {
           {token ? (
             <div className="flex items-center gap-2 cursor-pointer group relative">
               <img
-                className="w-20 h-20 rounded-full object-cover border-2 border-gray-300 shadow-md"
+                className="w-16 h-16 rounded-full object-cover border-2 border-gray-300 shadow-md"
                 src={userData.image}
                 alt="Profile Picture"
               />
