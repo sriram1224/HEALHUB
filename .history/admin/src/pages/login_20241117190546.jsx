@@ -1,0 +1,11 @@
+import { assets } from "../assets/assets";
+
+const Login = () => {
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+  });
+  return <div></div>;
+};
+
+export default Login;

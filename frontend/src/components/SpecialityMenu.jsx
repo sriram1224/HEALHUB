@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
 import { specialityData } from "../assets/assets";
+import { motion } from "framer-motion";
 
 const SpecialityMenu = () => {
   return (
-    <div id="speciality" className="p-6 bg-black rounded-lg">
-      <h1 className="text-3xl font-bold text-center mb-4 text-white">
-        Find by Speciality
-      </h1>
-      <p className="text-center mb-6 text-gray-300">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: false, amount: 0.3 }}
+      id="speciality"
+      className=""
+    >
+      <h1 className="p-3 text-6xl bg-gradient-to-b from-[#552f9b] via-[#4d3cae]  to-[#08105d] bg-clip-text text-transparent text-center font-bold">Find by Speciality</h1>
+      <p className="text-center mb-6 text-2xl font-bold bg-gradient-to-b from-[#2eb9ff] via-[#4828fd]  to-[#0aa7f5] bg-clip-text text-transparent">
         Simply browse through our extensive list of trusted doctors, schedule
         your appointment hassle-free.
       </p>
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
         {specialityData.slice(0, 6).map((item, index) => (
           <Link
             onClick={() => window.scrollTo(0, 0)}
@@ -22,15 +28,15 @@ const SpecialityMenu = () => {
             <img
               src={item.image}
               alt={item.speciality}
-              className="w-16 h-16 rounded-full mb-2"
+              className="rounded-full border border-orange-400"
             />
-            <p className="text-sm font-semibold text-blue-500 text-center">
+            <p className="text-xl text-center font-bold bg-gradient-to-b from-[#4e1971] via-[#5808a8]  to-[#004567] bg-clip-text text-transparent">
               {item.speciality}
             </p>
           </Link>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

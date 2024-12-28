@@ -1,0 +1,133 @@
+/* eslint-disable no-unused-vars */
+import { createContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+export const AdminContext = createContext();
+const AdminContextProvider = (props) => {
+  const [atoken, setAtoken] = useState(localStorage.getItem("atoken") || "");
+  const [doctor, setDoctor] = useState([]);
+  const [appointment, setAppointment] = useState({});
+  const [dashData, setDashData] = useState(false);
+  const backendurl = import.meta.env.VITE_BACKEND_URL;
+  const getAllDoctors = async () => {
+    try {
+      const { data } = await axios.post(
+        `${backendurl}/api/admin/all-doctor`,
+        {},
+        {
+          headers: { atoken },
+        }
+      );
+      if (data.success) {
+        setDoctor(data.doctors);
+      } else {
+        toast(data.message, { type: "error" });
+      }
+    } catch (err) {
+      toast.error(error.message);
+    }
+  };
+  const changeAvailability = async (docId) => {
+    try {
+      const { data } = await axios.post(
+        `${backendurl}/api/admin/change-availability`,
+        { docId },
+        { headers: { atoken } }
+      );
+      if (data.success) {
+        toast.success(data.message);
+        getAllDoctors();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+  const getAllAppointments = async () => {
+    try {
+      const { data } = await axios.get(
+        backendurl + "/api/admin/appointment-admin",
+        { headers: { atoken } }
+      );
+      if (data.success) {
+        setAppointment(data.appointments);
+        console.log(appointment);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+  const cancelAppointment = async (appointmentId) => {
+    try {
+      const { data } = await axios.post(
+        backendurl + "/api/admin/cancel-appointment",
+        { appointmentId },
+        { headers: { atoken } }
+      );
+      if (data.success) {
+        toast.success(data.message);
+        getAllAppointments();
+        getDashData();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    }
+  };
+  const getDashData = async () => {
+    try {
+      const { data } = await axios.get(`${backendurl}/api/admin/dashbord`, {
+        headers: { atoken },
+      });
+
+      if (data.success) {
+        setDashData(data.dashData); // Changed from dashboard to dashData
+        console.log("Dashboard Data:", data.dashData); // Debug log
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("Dashboard Error:", error);
+      toast.error("Failed to fetch dashboard data");
+    }
+  };
+  useEffect(() => {
+    if (atoken) {
+      getDashData();
+    }
+  }, [atoken]);
+
+  const value = {
+    atoken,
+    setAtoken,
+    backendurl,
+    doctor,
+    getAllDoctors,
+    changeAvailability,
+    appointment,
+    setAppointment,
+    getAllAppointments,
+    cancelAppointment,
+    dashData,
+    getDashData,
+  };
+
+  return (
+    <AdminContext.Provider value={value}>
+      {props.children}
+    </AdminContext.Provider>
+  );
+};
+
+AdminContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export { AdminContextProvider };
+export default AdminContextProvider;

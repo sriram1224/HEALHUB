@@ -20,22 +20,33 @@ const RelatedDoctors = ({ speciality, docId }) => {
     <div>
       {reldocs.length > 0 ? (
         <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Related Doctors</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <h2 className="text-2xl font-bold text-[#421984] mb-4">Related Doctors</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {reldocs.map((doc) => (
               <Link to={`/appointment/${doc._id}`} key={doc._id}>
-                <div className="bg-gray-800 hover:bg-black hover:border p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className=" border-[#6c382c] border px-3 py-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                   <img
                     src={doc.image}
                     alt={doc.name}
-                    className="w-24 h-24 rounded-full mb-4 mx-auto object-cover"
+                    className="w-24 h-24 rounded-full bg-gradient-to-r from-[#6c382c] via-[#814e33] to-[#421984]  mx-auto object-cover"
                   />
                   <div className="text-center">
-                    <p className="text-xl font-semibold text-white">
+                    <p className="text-xl font-semibold text-[#421984]">
                       {doc.name}
                     </p>
-                    <p className="text-gray-400">{doc.speciality}</p>
-                    <p className="text-green-500">Available</p>
+                    <p className="text-gray-700">{doc.speciality}</p>
+                    {doc.available ? <p
+                      className='text-green-500'
+
+                    >
+                      Available
+                    </p> : <p
+                      className="text-red-500"
+                    >
+
+                      Not Available
+
+                    </p>}
                   </div>
                 </div>
               </Link>

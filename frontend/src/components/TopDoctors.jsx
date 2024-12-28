@@ -1,54 +1,59 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const TopDoctors = () => {
   const navigate = useNavigate();
   const { doctors } = useContext(AppContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="p-6 bg-black rounded-lg">
-      <h1 className="text-3xl font-bold text-center mb-4 text-white">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: false, amount: 0.3 }}
+      className="p-6 rounded-lg mt-20 text-white"
+    >
+      <h1 className="text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-[#6c382c] via-[#814e33] to-[#421984] mb-4">
         Top Doctors to Book
       </h1>
-      <p className="text-center mb-6 text-gray-300">
+      <p className="text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6c382c] via-[#814e33] to-[#421984] mb-6">
         Simply browse through our extensive list of trusted doctors.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {doctors.slice(0, 10).map((item, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        {doctors.slice(0, 6).map((item, index) => (
           <div
             onClick={() => navigate(`/appointment/${item._id}`)}
             key={index}
-            className="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg border-blue-400 hover:bg-black hover:border transition-transform duration-300 transform hover:-translate-y-2"
+            className="p-6 rounded-lg shadow-md border border-[#6c382c] hover:shadow-lg hover:border transition-transform duration-300 transform hover:-translate-y-2"
           >
             <img
               src={item.image}
               alt={item.name}
-              className="w-32 h-32 rounded-full mr-4 shadow-md border-2 bg-blue-600 border-gray-700 mb-4 mx-auto object-cover"
+              className="w-32 h-32 rounded-full bg-gradient-to-r from-[#6c382c] via-[#814e33] to-[#421984] mb-4 mx-auto object-cover"
             />
             <div className="text-center">
-              <p className="text-xl font-semibold text-white">{item.name}</p>
+              <p className="text-xl text-[#421984] font-semibold">{item.name}</p>
               <p className="text-gray-400">{item.speciality}</p>
-              <p className="text-green-500">Available</p>
+              <p className={`text-${item.available ? "green" : "red"}-500`}>
+                {item.available ? "Available" : "Not Available"}
+              </p>
             </div>
           </div>
         ))}
       </div>
-      <div className="text-center mt-6">
-        <button
-          onClick={() => {
-            navigate("/doctors");
-            window.scrollTo(0, 0);
-          }}
-          className="bg-blue-500 text-white px-6 py-3 rounded-lg  transition duration-300 hover:bg-black hover:border"
-        >
-          More
+      {/* Centered MORE Button */}
+      <div className="flex justify-center mt-8">
+        <button onClick={() => navigate('/doctors')} className="px-12 py-4 font-bold border rounded text-[#421984] border-[#6c382c] hover:bg-[#421984] hover:text-white transition-colors duration-300">
+          MORE
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

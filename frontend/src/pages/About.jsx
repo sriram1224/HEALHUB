@@ -6,24 +6,24 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="text-white">
+    <div className="text-[]">
       {/* About Us Section */}
-      <section className="bg-black py-12">
-        <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold mb-8 text-center text-blue-500">
+      <section className="py-12">
+        <div className="px-16">
+          <h1 className="text-4xl font-bold mb-8 text-center text-[#421984]">
             About Us
           </h1>
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex flex-col md:flex-row justify-center border-2 border-[#421984] rounded-lg items-center gap-7">
             {/* Left - Image Section */}
             <div className="w-full md:w-1/2">
               <img
                 src={assets.about_image}
                 alt="About Us"
-                className="w-full h-auto rounded-lg shadow-lg"
+                className=" h-auto rounded-lg shadow-lg"
               />
             </div>
             {/* Right - Text Section */}
-            <div className="w-full md:w-1/2 space-y-4">
+            <div className="w-full text-xl space-y-9">
               <p>
                 Welcome to Prescripto, your trusted partner in managing your
                 healthcare needs conveniently and efficiently. At Prescripto, we
@@ -39,7 +39,7 @@ const About = () => {
                 or managing ongoing care, Prescripto is here to support you
                 every step of the way.
               </p>
-              <h2 className="text-2xl font-bold text-blue-500">Our Vision</h2>
+              <h2 className="text-2xl font-bold text-[#421984]">Our Vision</h2>
               <p>
                 Our vision at Prescripto is to create a seamless healthcare
                 experience for every user. We aim to bridge the gap between
@@ -54,15 +54,15 @@ const About = () => {
       {/* Why Choose Us Section */}
       <section className=" border border-collapse rounded-lg py-12">
         <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-8 text-center text-blue-500">
+          <h2 className="text-4xl font-bold mb-8 text-center text-[#421984]">
             Why Choose Us
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-4 text-xl">
             <p>
               At Prescripto, we prioritize your health and convenience. Here are
               a few reasons why you should choose us:
             </p>
-            <ul className="list-disc list-inside space-y-2">
+            <ul className="list-decimal list-inside space-y-4">
               <li>Easy and convenient appointment scheduling</li>
               <li>Access to a wide network of trusted healthcare providers</li>
               <li>Secure and confidential health record management</li>
