@@ -12,3 +12,18 @@
 body{
     background-color: #EDE8F5 ;
 }
+
+body::-webkit-scrollbar {
+    width: 0; /* Remove the scrollbar width */
+    height: 0; /* Remove the scrollbar height */
+}
+
+/* For Firefox */
+body {
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+/* For IE and Edge */
+body {
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}

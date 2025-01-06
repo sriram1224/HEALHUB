@@ -10,11 +10,11 @@ const Header = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: false, amount: 0.3 }}
-      className="flex flex-col  md:flex-row items-center bg-gradient-to-r from-transparent to-[#DAB49D] rounded-lg pb-0 p-10 mx-10 mt-10"
+      className="flex flex-col  md:flex-row items-center border border-[#915631] bg-gradient-to-r from-transparent to-[#DAB49D] rounded-lg pb-0 p-10 mx-10 mt-10"
     >
       {/* Left Side */}
       <div className="flex-1 space-y-6">
-        <p className="text-6xl bg-gradient-to-b from-[#333653] via-[#9b674b]  to-[#27293B] bg-clip-text text-transparent font-bold">
+        <p className="text-6xl bg-gradient-to-b from-[#333653] via-[#9b674b]  to-[#27293B] bg-clip-text text-transparent  font-bold">
           Book Appointment <br /> With Trusted Doctors
         </p>
         <div className="flex items-center space-x-4">
