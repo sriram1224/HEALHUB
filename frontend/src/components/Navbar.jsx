@@ -1,21 +1,20 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
-import { use } from "react";
-import { useEffect } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { token, setToken, userData } = useContext(AppContext);
   const [showMenu, setShowMenu] = useState(false);
+
   useEffect(() => {
     if (!token) {
       navigate("/login");
     }
-  })
-  const logout = () => {
+  }, [token, navigate]);
 
+  const logout = () => {
     setToken(false);
     localStorage.removeItem("token");
     navigate("/login");
@@ -23,43 +22,62 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 w-full backdrop-blur-sm bg-white/30 shadow-lg z-10">
-      <div className="flex flex-wrap items-center justify-between mx-auto rounded-lg p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+      <div className="flex flex-wrap items-center justify-between mx-auto px-6 py-4">
+        {/* Brand Logo */}
+        <a href="/" className="flex items-center space-x-3">
           <span
             onClick={() => navigate("/")}
-            className="self-center text-4xl font-bold bg-gradient-to-b from-[#6c382c] via-[#814e33] to-[#9481b3] bg-clip-text text-transparent russo-one-regular"
+            className="self-center text-4xl font-bold bg-gradient-to-b from-[#6c382c] via-[#814e33] to-[#9481b3] bg-clip-text text-transparent"
           >
             H E A L H U B
           </span>
         </a>
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+        {/* User Profile and Auth Buttons */}
+        <div className="flex items-center gap-4 md:order-2">
           {token ? (
             <div className="flex items-center gap-2 cursor-pointer group relative">
-              {userData.image ? <img
-                className="w-16 h-16 rounded-full object-cover border-2 border-gray-300 shadow-md"
-                src={userData.image ? userData.image : ""}
-                alt=""
-              /> :
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="10" r="3" /><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" /></svg>}
-              <img className="w-2.5" src={assets.dropdown_icon} alt="" />
+              {userData.image ? (
+                <img
+                  className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 shadow-md"
+                  src={userData.image}
+                  alt="User"
+                />
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-circle-user"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
+                </svg>
+              )}
+              <img className="w-2.5" src={assets.dropdown_icon} alt="Dropdown Icon" />
               <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block">
-                <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
+                <div className="min-w-48 bg-white shadow-lg rounded-md flex flex-col gap-4 p-4">
                   <p
-                    onClick={() => navigate("my-profile")}
+                    onClick={() => navigate("/my-profile")}
                     className="hover:text-black cursor-pointer"
                   >
                     My Profile
                   </p>
                   <p
-                    onClick={() => navigate("my-appointment")}
+                    onClick={() => navigate("/my-appointment")}
                     className="hover:text-black cursor-pointer"
                   >
                     My Appointments
                   </p>
                   <p
-                    onClick={() => {
-                      logout();
-                    }}
+                    onClick={logout}
                     className="hover:text-black cursor-pointer"
                   >
                     Logout
@@ -75,12 +93,12 @@ const Navbar = () => {
               Create an account
             </button>
           )}
+
+          {/* Mobile Menu Button */}
           <button
-            onClick={() => setShowMenu(!showMenu)} // Toggle menu visibility
+            onClick={() => setShowMenu(!showMenu)}
             type="button"
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-            aria-controls="navbar-cta"
-            aria-expanded={showMenu ? "true" : "false"}
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -100,65 +118,34 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
+
+        {/* Navigation Links */}
         <div
-          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${showMenu ? "block" : "hidden"
+          className={`w-full md:flex md:w-auto md:order-1 ${showMenu ? "block" : "hidden"
             }`}
           id="navbar-cta"
         >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 border text-blue-500 font-bold rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
-            <li>
-              <NavLink
-                to="/"
-                onClick={() => setShowMenu(false)}
-                className={({ isActive }) =>
-                  isActive
-                    ? "block py-2 px-3 md:p-0 text-[#6523a7] text-xl hover:text-[#6523a7] border-b-2 border-blue-900"
-                    : "block py-2 px-3 md:p-0 hover:border-b-2 hover:text-blue-500 hover:border-blue-700"
-                }
-              >
-                HOME
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/doctors"
-                onClick={() => setShowMenu(false)}
-                className={({ isActive }) =>
-                  isActive
-                    ? "block py-2 px-3 md:p-0 text-[#6523a7] text-xl border-b-2 border-blue-700 hover:text-blue-700"
-                    : "block py-2 px-3 md:p-0 hover:border-b-2 hover:text-blue-500 hover:border-blue-900"
-                }
-              >
-                ALL DOCTORS
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/about"
-                onClick={() => setShowMenu(false)}
-                className={({ isActive }) =>
-                  isActive
-                    ? "block py-2 px-3 md:p-0 text-[#6523a7] text-xl border-b-2 border-blue-700 hover:text-blue-700"
-                    : "block py-2 px-3 md:p-0 hover:border-b-2 hover:text-blue-500 hover:border-blue-900"
-                }
-              >
-                ABOUT
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact"
-                onClick={() => setShowMenu(false)}
-                className={({ isActive }) =>
-                  isActive
-                    ? "block py-2 px-3 md:p-0 text-[#6523a7] text-xl border-b-2 border-blue-700 hover:text-blue-700"
-                    : "block py-2 px-3 md:p-0 hover:border-b-2 hover:text-blue-500 hover:border-blue-900"
-                }
-
-              >
-                CONTACT
-              </NavLink>
-            </li>
+          <ul className="flex transition-all duration-400 flex-col md:flex-row md:space-x-8 text-blue-500 font-bold md:mt-0 mt-4 md:border-0 border-t  border-gray-200 md:items-center">
+            {[
+              { path: "/", label: "HOME" },
+              { path: "/doctors", label: "ALL DOCTORS" },
+              { path: "/about", label: "ABOUT" },
+              { path: "/contact", label: "CONTACT" },
+            ].map((item) => (
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  onClick={() => setShowMenu(false)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block py-2 px-3 md:p-0 text-[#6523a7] text-xl border-b-2 border-blue-700"
+                      : "block py-2 px-3 md:p-0 hover:text-blue-600 hover:border-b-2 hover:border-blue-500"
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

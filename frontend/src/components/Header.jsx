@@ -1,14 +1,16 @@
 import { assets } from "../assets/assets";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: false, amount: 0.3 }}
-      className="flex flex-col md:flex-row items-center bg-gradient-to-r from-transparent via-[#ACD5EA] to-[#8F96CE] rounded-lg pb-0 p-10  mt-10"
+      className="flex flex-col  md:flex-row items-center bg-gradient-to-r from-transparent to-[#DAB49D] rounded-lg pb-0 p-10 mx-10 mt-10"
     >
       {/* Left Side */}
       <div className="flex-1 space-y-6">
@@ -26,7 +28,7 @@ const Header = () => {
             <br /> schedule your appointment hassle-free.
           </p>
         </div>
-        <button className="bg-white text-blue-800 px-6 py-3 rounded-lg hover:bg-blue-100 hover:text-black transition duration-300">
+        <button onClick={() => (navigate('/doctors'))} className="bg-white text-blue-800 px-6 py-3 rounded-lg hover:bg-blue-100 hover:text-black transition duration-300">
           <a href="#speciality" className="flex items-center space-x-2">
             <span>Book Appointment</span>
             <img

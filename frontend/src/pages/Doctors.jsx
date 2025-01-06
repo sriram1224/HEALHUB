@@ -50,13 +50,13 @@ const Doctors = () => {
           viewport={{ once: true }}
         >
           <div className="p-4 rounded-lg items-center border border-[#6c382c]">
-            <h1 className="cursor-pointer w-full border bg-gradient-to-r from-[#6c382cb9] via-[#814e33] to-[#421984c7] text-white mb-3 p-3 text-xl text-center rounded-lg hidden md:block">
+            <h1 className="cursor-pointer w-full border-[#6c382c] border text-[#421984] mb-3 p-3 text-3xl font-bold text-center rounded-lg hidden md:block">
               Filter
             </h1>
 
             {/* 📱 Mobile Filter Toggle Button */}
             <button
-              className="text-xl font-bold mb-4 w-2/8 md:hidden bg-gradient-to-r from-[#6c382cb9] via-[#814e33] to-[#421984c7] py-2 px-6 rounded-lg flex items-center justify-between transition-all duration-300 shadow-lg transform hover:scale-105"
+              className="text-xl font-bold mb-4 w-2/8 md:hidden bg-gradient-to-r from-[#6c382c] via-[#814e33] to-[#421984] py-2 px-6 rounded-lg flex items-center justify-between transition-all duration-300 shadow-lg transform hover:scale-105"
               onClick={() => setShowFilters(!showFilters)}
             >
               Filters
@@ -74,9 +74,9 @@ const Doctors = () => {
                     "General physician",
                     "Gynecologist",
                     "Dermatologist",
-                    "Pediatricians",
+                    "Pediatrician",
                     "Neurologist",
-                    "Gastroenterologist",
+
                   ].map((item) => (
                     <li
                       key={item}
@@ -85,8 +85,8 @@ const Doctors = () => {
                           ? navigate("/doctors")
                           : navigate(`/doctors/${item}`)
                       }
-                      className={`cursor-pointer p-3 rounded-lg font-bold text-center hover:bg-transparent hover:text-[#421984] transition duration-300 ${speciality === item
-                        ? "bg-gradient-to-r from-[#6c382cb9] via-[#814e338b] to-[#421984c7]"
+                      className={`cursor-pointer p-3 rounded-lg font-bold text-center hover:bg-transparent  transition duration-300 ${speciality === item
+                        ? "bg-gradient-to-r from-[#6c382c] via-[#814e33] to-[#421984]"
                         : "border border-[#6c382c] bg-[#421984]"
                         }`}
                     >
@@ -104,9 +104,9 @@ const Doctors = () => {
                   "General physician",
                   "Gynecologist",
                   "Dermatologist",
-                  "Pediatricians",
+                  "Pediatrician",
                   "Neurologist",
-                  "Gastroenterologist",
+
                 ].map((item) => (
                   <li
                     key={item}
@@ -115,8 +115,8 @@ const Doctors = () => {
                         ? navigate("/doctors")
                         : navigate(`/doctors/${item}`)
                     }
-                    className={`cursor-pointer p-3 rounded-lg font-bold text-center hover:bg-transparent hover:text-[#421984] transition duration-300 ${speciality === item
-                      ? "bg-gradient-to-r from-[#6c382cb9] via-[#814e338b] to-[#421984c7]"
+                    className={`cursor-pointer p-3 rounded-lg font-bold text-center hover:bg-transparent  transition duration-300 ${speciality === item
+                      ? "bg-gradient-to-r text-[#ffffff] from-[#6c382c] via-[#814e33] to-[#421984]"
                       : "border border-[#6c382c] bg-[#421984]"
                       }`}
                   >
@@ -142,7 +142,7 @@ const Doctors = () => {
               <motion.div
                 key={item._id || index}
                 onClick={() => navigate(`/appointment/${item._id}`)}
-                className=" hover:border p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 transform hover:-translate-y-2 cursor-pointer flex flex-col items-center justify-center"
+                className=" border border-[#6c382c] p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 transform hover:-translate-y-2 cursor-pointer flex flex-col items-center justify-center"
                 whileHover={{ scale: 1.05 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

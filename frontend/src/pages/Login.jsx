@@ -57,20 +57,20 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen  text-white">
       <form
         onSubmit={onSubmit}
-        className=" p-10  bg-gradient-to-br from-transparent  to-[#8F96CE] rounded-lg shadow-md border w-[40%] "
+        className=" p-10  bg-gradient-to-br h-[40em] border border-[#1125be] rounded-lg shadow-md  w-[30%] "
       >
         <div className="mb-6 text-center">
-          <p className="text-5xl text-[#3D52A0] font-bold mb-2">
+          <p className="text-5xl text-[#3D52A0] font-bold mb-10">
             {state === "Sign Up" ? "Create Account" : "Login"}
           </p>
-          <p className="text-xl font-medium text-[#421984]">
+          <p className="text-xl font-medium text-[#421984] mb-8">
             Please {state === "Sign Up" ? "sign up" : "log in"} to book an
             appointment
           </p>
         </div>
         {state === "Sign Up" && (
           <div className="mb-4">
-            <label className="block text-xl text-[#421984]  font-bold mb-1" htmlFor="name">
+            <label className="block text-xl text-[#421984]  font-bold mb-5" htmlFor="name">
               Full Name
             </label>
             <input
@@ -84,7 +84,7 @@ const Login = () => {
           </div>
         )}
         <div className="mb-4">
-          <label className="block text-xl text-[#421984] font-bold mb-1" htmlFor="email">
+          <label className="block text-xl text-[#421984] font-bold mb-5" htmlFor="email">
             Email
           </label>
           <input
@@ -97,7 +97,7 @@ const Login = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-xl text-[#421984] font-bold mb-1" htmlFor="password">
+          <label className="block text-xl text-[#421984] font-bold mb-5" htmlFor="password">
             Password
           </label>
           <input
@@ -105,13 +105,13 @@ const Login = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 rounded bg-[#1a212e] text-[#421984]  focus:outline-none "
+            className="w-full px-4 py-2 rounded bg-[#1a212e] text-[#ffff]  focus:outline-none "
             placeholder="Enter your password"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition duration-200"
+          className="w-full bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition duration- mb-4"
         >
           {state === "Sign Up" ? "Sign Up" : "Login"}
         </button>

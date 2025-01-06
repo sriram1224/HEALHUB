@@ -113,7 +113,7 @@ const MyAppointments = () => {
   return (
     <div className="p-6 min-h-screen text-white">
       <div>
-        <h1 className="text-4xl font-bold mb-8 text-center md:text-left text-white">
+        <h1 className="text-6xl bg-gradient-to-b from-[#333653] via-[#9b674b]  to-[#27293B] bg-clip-text text-transparent font-bold">
           My Appointments
         </h1>
 
