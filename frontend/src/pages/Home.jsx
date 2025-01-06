@@ -4,13 +4,23 @@ import Banner from "../components/Banner";
 import Headers from "../components/Header";
 import SpecialityMenu from "../components/SpecialityMenu";
 import TopDoctors from "../components/TopDoctors";
+import { AppContext } from "../context/AppContext";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 }, // Start animation (below and hidden)
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }, // End animation
 };
 
+
 const Home = () => {
+  const navigate = useNavigate();
+  const { token, setToken, userData } = useContext(AppContext);
+  if (!token) {
+    navigate("/login");
+  }
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll(".animated-section");

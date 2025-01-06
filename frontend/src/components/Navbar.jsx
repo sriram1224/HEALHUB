@@ -2,13 +2,20 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
+import { use } from "react";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { token, setToken, userData } = useContext(AppContext);
   const [showMenu, setShowMenu] = useState(false);
-
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  })
   const logout = () => {
+
     setToken(false);
     localStorage.removeItem("token");
     navigate("/login");
@@ -28,11 +35,12 @@ const Navbar = () => {
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {token ? (
             <div className="flex items-center gap-2 cursor-pointer group relative">
-              <img
+              {userData.image ? <img
                 className="w-16 h-16 rounded-full object-cover border-2 border-gray-300 shadow-md"
-                src={userData.image}
-                alt="Profile Picture"
-              />
+                src={userData.image ? userData.image : ""}
+                alt=""
+              /> :
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="10" r="3" /><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" /></svg>}
               <img className="w-2.5" src={assets.dropdown_icon} alt="" />
               <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block">
                 <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">

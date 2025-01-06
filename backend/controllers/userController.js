@@ -6,7 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 import jwt from "jsonwebtoken";
 import appointmentModel from "../models/appointmentModel.js";
 import Razorpay from "razorpay";
-import mongoose from "mongoose";
+
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;

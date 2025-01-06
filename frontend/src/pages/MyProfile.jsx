@@ -104,36 +104,56 @@ const MyProfile = () => {
 
         <div className="flex flex-col  md:flex-row items-center justify-between  rounded-lg">
           <div className="flex-shrink-0  p-[50px] mb-6 md:mb-0">
-            {isEdit ? (
-              <label htmlFor="image">
-                <div className="relative">
+            {isEdit ? <label htmlFor="image">
+              <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto">
+                {/* Display Uploaded Image or Default User Image */}
+                {image || userData?.image ? (
                   <img
                     src={image ? URL.createObjectURL(image) : userData.image}
                     alt="Profile"
-                    className="rounded-full w-40 h-40 md:w-48 md:h-48 object-cover mx-auto shadow-lg "
+                    className="rounded-full w-full h-full object-cover shadow-lg border-4 border-gray-200"
                   />
-                  {!image && !userData?.image && (
-                    <img
-                      src={assets.upload_icon}
-                      alt="Upload Icon"
-                      className="absolute inset-0 w-10 h-10 m-auto"
-                    />
-                  )}
-                </div>
-                <input
-                  type="file"
-                  id="image"
-                  onChange={(e) => setImage(e.target.files[0])}
-                  className="hidden"
-                />
-              </label>
-            ) : (
-              <img
-                src={userData?.image || assets.defaultProfileImage}
-                alt="Profile"
-                className="rounded-full w-40 h-40 md:w-48 md:h-48 object-cover mx-auto shadow-lg border-4 border-gray-700"
+                ) : (
+                  /* Default Placeholder with SVG */
+                  <div className="w-full h-full shadow-xl border-4 border-gray-300 rounded-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-16 h-16 text-gray-700"
+                    >
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="17 8 12 3 7 8" />
+                      <line x1="12" x2="12" y1="3" y2="15" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+              {/* Hidden File Input */}
+              <input
+                type="file"
+                id="image"
+                onChange={(e) => setImage(e.target.files[0])}
+                className="hidden"
               />
-            )}
+            </label>
+              : (
+                userData.image ?
+                  <img
+                    src={userData.image}
+                    alt="Profile"
+                    className="rounded-full w-40 h-40 md:w-48 md:h-48 object-cover mx-auto shadow-lg border-4 border-gray-700"
+                  />
+                  :
+                  <div className="w-40 h-40 shadow-xl border-4 border-gray-300 rounded-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                  </div>
+
+              )}
           </div>
 
           <div className="w-[90%] mb-10 space-y-6">
