@@ -51,10 +51,10 @@ const Home = () => {
       </motion.div>
 
       {/* Speciality - Top Doctors - Speciality Layout */}
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Left Speciality Section */}
+      <div className="flex flex-col gap-8">
+        {/* Speciality Section */}
         <motion.div
-          className="w-full lg:w-1/2 animated-section flex flex-col justify-center items-center p-4 bg-transparent  rounded-lg"
+          className="w-full animated-section flex flex-col justify-center items-center p-4 bg-transparent rounded-lg"
           initial="hidden"
           animate="visible"
           variants={sectionVariants}
@@ -64,7 +64,7 @@ const Home = () => {
 
         {/* Top Doctors Section */}
         <motion.div
-          className="w-full lg:w-1/2 animated-section flex flex-col justify-center items-center p-4   rounded-lg"
+          className="w-full animated-section flex flex-col justify-center items-center p-4 rounded-lg"
           initial="hidden"
           animate="visible"
           variants={sectionVariants}
